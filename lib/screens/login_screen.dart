@@ -69,23 +69,19 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Customlogin(
-                        text: 'Google',
                         onPressed: () {
                           print('Google pressed');
                         },
                         backgroundColor: Colors.white,
-                        textColor: Colors.grey,
                         imagePath: 'assets/images/logogoogle.png',
                         imageSize: 18,
                       ),
                       SizedBox(width: 20),
                       Customlogin(
-                        text: 'Facebook',
                         onPressed: () {
                           print('Facebook pressed');
                         },
                         backgroundColor: Colors.white,
-                        textColor: Colors.grey,
                         imagePath: 'assets/images/facebooklogo.png',
                         imageSize: 18,
                       ),

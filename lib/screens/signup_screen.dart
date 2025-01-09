@@ -17,7 +17,6 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -77,23 +76,19 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Customlogin(
-                        text: 'Google',
                         onPressed: () {
                           print('Google pressed');
                         },
                         backgroundColor: Colors.white,
-                        textColor: Colors.grey,
                         imagePath: 'assets/images/logogoogle.png',
                         imageSize: 18,
                       ),
                       SizedBox(width: 20),
                       Customlogin(
-                        text: 'Facebook',
                         onPressed: () {
                           print('Facebook pressed');
                         },
                         backgroundColor: Colors.white,
-                        textColor: Colors.grey,
                         imagePath: 'assets/images/facebooklogo.png',
                         imageSize: 18,
                       ),
