@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_firebase/Service/Auth.dart';
 import '../components/custom_button.dart';
 import '../components/custom_textfield.dart';
 import '../components/custom_login.dart';
@@ -57,10 +58,10 @@ class SignUpScreen extends StatelessWidget {
                       : CustomButton(
                           text: 'Sign Up',
                           onPressed: () {
-                            signUpController.signUp(
-                              emailController.text,
-                              passwordController.text,
-                            );
+                              AuthService().signup(
+                                Email: emailController.text,
+                                Password: passwordController.text
+                                );
                           },
                         )),
                   SizedBox(height: 20),
