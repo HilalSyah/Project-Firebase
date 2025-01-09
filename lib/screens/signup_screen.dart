@@ -58,15 +58,9 @@ class SignUpScreen extends StatelessWidget {
                           width: double.infinity,
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: signUpController.errorMessage.value ==
-                                    'Semua field harus diisi'
-                                ? Colors.orange.withOpacity(0.1)
-                                : Colors.red.withOpacity(0.1),
+                            color: signUpController.errorBackgroundColor,
                             border: Border.all(
-                              color: signUpController.errorMessage.value ==
-                                      'Semua field harus diisi'
-                                  ? Colors.orange.withOpacity(0.3)
-                                  : Colors.red.withOpacity(0.3),
+                              color: signUpController.errorBorderColor,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
@@ -74,14 +68,8 @@ class SignUpScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Icon(
-                                signUpController.errorMessage.value ==
-                                        'Semua field harus diisi'
-                                    ? Icons.warning_amber_rounded
-                                    : Icons.error_outline,
-                                color: signUpController.errorMessage.value ==
-                                        'Semua field harus diisi'
-                                    ? Colors.orange
-                                    : Colors.red,
+                                signUpController.errorIcon,
+                                color: signUpController.errorColor,
                                 size: 20,
                               ),
                               SizedBox(width: 12),
@@ -89,11 +77,7 @@ class SignUpScreen extends StatelessWidget {
                                 child: Text(
                                   signUpController.errorMessage.value,
                                   style: TextStyle(
-                                    color:
-                                        signUpController.errorMessage.value ==
-                                                'Semua field harus diisi'
-                                            ? Colors.orange[700]
-                                            : Colors.red[700],
+                                    color: signUpController.errorColor,
                                     fontSize: 12,
                                     height: 1.5,
                                   ),

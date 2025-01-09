@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^6.1.0
   firebase_auth: ^5.4.0
   fluttertoast: ^8.2.10
+  motion_tab_bar_v2: ^0.3.0
 
 
 dev_dependencies:
