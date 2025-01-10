@@ -7,14 +7,16 @@ import 'profile_screen.dart';
 class BottomNav extends StatelessWidget {
   BottomNav({Key? key}) : super(key: key);
 
+
   final RxInt currentIndex = 0.obs;
 
   final screens = [
     HomeScreen(),
     FavoriteScreen(),
-    ProfileScreen(),
+    ProfileFireBase(),
   ];
 
+  
   void changePage(int index) {
     currentIndex.value = index;
   }
