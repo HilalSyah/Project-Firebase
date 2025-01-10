@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_firebase/Service/GogleAuth.dart';
 import 'package:project_firebase/components/custom_login.dart';
 import '../components/custom_button.dart';
 import '../components/custom_textfield.dart';
@@ -69,8 +70,12 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Customlogin(
-                        onPressed: () {
-                          print('Google pressed');
+                        onPressed: () async {
+                          try {
+                            await Gogleauth().signInGoogle();
+                          } catch (e) {
+                            print("Error during Google Sign-In: $e");
+                          }
                         },
                         backgroundColor: Colors.white,
                         imagePath: 'assets/images/logogoogle.png',
