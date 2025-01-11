@@ -1,13 +1,15 @@
 import 'package:get/get.dart';
 
 class ProfileControllerFB extends GetxController {
-  var name = 'Arsya Fauz Marzuki'.obs;
-  var email = 'Arsya@gmail.com'.obs;
-  var phone = '081234567890'.obs;
+  var name = ''.obs;
+  var email = ''.obs;
+  var phone = ''.obs;
+  var password = ''.obs; // Tambahkan variabel untuk password
 
-  void updateProfile(String newName, String newEmail, String newPhone) {
+  void updateProfile(String newName, String newEmail, String newPhone, String newPassword) {
     name.value = newName;
     email.value = newEmail;
     phone.value = newPhone;
+    password.value = newPassword; // Simpan password
   }
 }

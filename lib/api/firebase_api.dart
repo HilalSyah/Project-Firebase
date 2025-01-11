@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 class FirebaseApi {
   final _firebaseMessaging = FirebaseMessaging.instance;
 
+  FirebaseApi() {
+    initNotifications();
+  }
   Future<void> initNotifications() async {
     await _firebaseMessaging.requestPermission();
     await initLocalNotifications();

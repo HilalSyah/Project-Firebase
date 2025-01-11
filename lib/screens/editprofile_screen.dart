@@ -8,6 +8,7 @@ class EditProfilePage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController(); // Tambahkan controller untuk password
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class EditProfilePage extends StatelessWidget {
     nameController.text = controller.name.value;
     emailController.text = controller.email.value;
     phoneController.text = controller.phone.value;
+    passwordController.text = controller.password.value; // Isi password jika ada
 
     return Scaffold(
       appBar: AppBar(
@@ -67,6 +69,17 @@ class EditProfilePage extends StatelessWidget {
                 FilteringTextInputFormatter.digitsOnly, // Hanya mengizinkan angka
               ],
             ),
+            SizedBox(height: 20),
+            // Input untuk Password
+            TextField(
+              controller: passwordController,
+              obscureText: true, // Menyembunyikan karakter password
+              decoration: InputDecoration(
+                labelText: 'Password',
+                labelStyle: TextStyle(color: Color(0xFFB2D3C2)), // Warna label
+                border: OutlineInputBorder(),
+              ),
+            ),
             SizedBox(height: 30),
             // Tombol Simpan
             SizedBox(
@@ -79,6 +92,7 @@ class EditProfilePage extends StatelessWidget {
                     nameController.text,
                     emailController.text,
                     phoneController.text,
+                    passwordController.text, // Sertakan password
                   );
                   Get.back(); // Kembali ke halaman Profile
                 },
