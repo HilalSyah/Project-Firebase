@@ -13,13 +13,15 @@ class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController(); // Controller untuk nama
-  final phoneController = TextEditingController(); // Controller untuk nomor telepon
+  final phoneController =
+      TextEditingController(); // Controller untuk nomor telepon
   final loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView( // Tambahkan SingleChildScrollView
+      body: SingleChildScrollView(
+        // Tambahkan SingleChildScrollView
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
@@ -85,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                 Customlogin(
                   onPressed: () async {
                     try {
-                      await Gogleauth().signInGoogle();
+                      await Gogleauth().signInGoogle(context);
                     } catch (e) {
                       print("Error during Google Sign-In: $e");
                     }
