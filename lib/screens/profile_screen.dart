@@ -8,122 +8,132 @@ class ProfileFireBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Panggil fungsi untuk mengambil data
+    controller.getDataprofile();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('ProfileFireBase'),
         backgroundColor: Color(0xFFB2D3C2),
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        color: Color(0xFFF5F5DC),
-        child: ListView(
-          padding: EdgeInsets.all(20),
-          children: [
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Color(0xFFB2D3C2),
-              child: Icon(
-                Icons.person,
-                size: 60,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 20),
-            Card(
-              elevation: 8,
-              color: Color(0xFFE8F5E9),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.person, color: Color(0xFFB2D3C2)),
-                      title: Text(
-                        'Nama Lengkap',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFB2D3C2),
-                        ),
-                      ),
-                      subtitle: Obx(() => Text(
-                            controller.name.value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          )),
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.email, color: Color(0xFFB2D3C2)),
-                      title: Text(
-                        'Email',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFB2D3C2),
-                        ),
-                      ),
-                      subtitle: Obx(() => Text(
-                            controller.email.value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          )),
-                    ),
-                  ],
+      body: Obx(
+        () => Container(
+          color: Color(0xFFF5F5DC),
+          child: ListView(
+            padding: EdgeInsets.all(20),
+            children: [
+              // Profile Picture
+              CircleAvatar(
+                radius: 60,
+                backgroundColor: Color(0xFFB2D3C2),
+                child: Icon(
+                  Icons.person,
+                  size: 60,
+                  color: Colors.white,
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  Get.to(() => EditProfilePage());
-                },
-                child: Text(
-                  'Edit Profil',
-                  style: TextStyle(fontSize: 18),
+              SizedBox(height: 20),
+              // Profile Info
+              Card(
+                elevation: 8,
+                color: Color(0xFFE8F5E9),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFB2D3C2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.person, color: Color(0xFFB2D3C2)),
+                        title: Text(
+                          'Nama Lengkap',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFB2D3C2),
+                          ),
+                        ),
+                        subtitle: Text(
+                          controller.name.value,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(Icons.email, color: Color(0xFFB2D3C2)),
+                        title: Text(
+                          'Email',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFB2D3C2),
+                          ),
+                        ),
+                        subtitle: Text(
+                          controller.email.value,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                      Divider(),
+                    ],
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Get.offAllNamed('/');
-                },
-                icon: Icon(Icons.logout),
-                label: Text(
-                  'Logout',
-                  style: TextStyle(fontSize: 18),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              SizedBox(height: 30),
+              // Edit Profile Button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => EditProfilePage());
+                  },
+                  child: Text(
+                    'Edit Profil',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFB2D3C2),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              // Logout Button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Get.offAllNamed('/');
+                  },
+                  icon: Icon(Icons.logout),
+                  label: Text(
+                    'Logout',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
