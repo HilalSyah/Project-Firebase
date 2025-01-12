@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../api/firebase_api.dart';
+import '../Service/firebase_api.dart';
 import 'profile_controller.dart';
 
 class LoginController extends GetxController {

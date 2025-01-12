@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:project_firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,11 +8,25 @@ import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/bottom_nav.dart';
 import 'package:project_firebase/controllers/profile_controller.dart';
+import 'package:project_firebase/Service/firebase_api.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  print("Handling a background message: ${message.messageId}");
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Get.put(ProfileControllerFB());
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Set up background message handler
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  // Initialize Firebase API
+  await FirebaseApi().initNotifications();
 
   runApp(const MyApp());
 }
