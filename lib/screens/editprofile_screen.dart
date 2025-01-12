@@ -7,7 +7,6 @@ class EditProfilePage extends StatelessWidget {
   final ProfileControllerFB controller = Get.find();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController(); // Tambahkan controller untuk password
 
   @override
@@ -15,7 +14,6 @@ class EditProfilePage extends StatelessWidget {
     // Isi TextField dengan data saat ini
     nameController.text = controller.name.value;
     emailController.text = controller.email.value;
-    phoneController.text = controller.phone.value;
     passwordController.text = controller.password.value; // Isi password jika ada
 
     return Scaffold(
@@ -56,19 +54,7 @@ class EditProfilePage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             // Input untuk Nomor Telepon
-            TextField(
-              controller: phoneController,
-              maxLength: 20, // Membatasi panjang karakter menjadi 20
-              decoration: InputDecoration(
-                labelText: 'Nomor Telepon',
-                labelStyle: TextStyle(color: Color(0xFFB2D3C2)), // Warna label
-                border: OutlineInputBorder(),
-                counterText: '', // Menyembunyikan penghitung karakter
-              ),
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly, // Hanya mengizinkan angka
-              ],
-            ),
+
             SizedBox(height: 20),
             // Input untuk Password
             TextField(
@@ -91,7 +77,6 @@ class EditProfilePage extends StatelessWidget {
                   controller.updateProfile(
                     nameController.text,
                     emailController.text,
-                    phoneController.text,
                     passwordController.text, // Sertakan password
                   );
                   Get.back(); // Kembali ke halaman Profile

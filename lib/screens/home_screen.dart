@@ -8,14 +8,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> products = [
-      {'name': 'cap', 'price': 'Rp 120.000', 'image': 'assets/cap.jpg'},
-      {'name': 'Hoodie', 'price': 'Rp 250.000', 'image': 'assets/hoodie.jpg'},
-      {'name': 'Jacket', 'price': 'Rp 300.000', 'image': 'assets/jackets.jpg'},
-      {'name': 'polo shirt', 'price': 'Rp 80.000', 'image': 'assets/poloshirt.jpg'},
-      {'name': 'shocks', 'price': 'Rp 80.000', 'image': 'assets/shocks.jpg'},
-      {'name': 'shoes', 'price': 'Rp 80.000', 'image': 'assets/shoes.jpg'},
-      {'name': 'sweater', 'price': 'Rp 80.000', 'image': 'assets/sweater.jpg'},
-      {'name': 't shirt', 'price': 'Rp 80.000', 'image': 'assets/tshirt.jpg'},
+      {'name': 'cap', 'price': 'Rp 120.000', 'image': 'assets/images/cap.jpg'},
+      {'name': 'Hoodie', 'price': 'Rp 250.000', 'image': 'assets/images/hoodie.jpg'},
+      {'name': 'Jacket', 'price': 'Rp 300.000', 'image': 'assets/images/jackets.jpg'},
+      {'name': 'polo shirt', 'price': 'Rp 80.000', 'image': 'assets/images/poloshirt.jpg'},
+      {'name': 'shocks', 'price': 'Rp 80.000', 'image': 'assets/images/shocks.jpg'},
+      {'name': 'shoes', 'price': 'Rp 80.000', 'image': 'assets/images/shoes.jpg'},
+      {'name': 'sweater', 'price': 'Rp 80.000', 'image': 'assets/images/sweater.jpg'},
+      {'name': 't shirt', 'price': 'Rp 80.000', 'image': 'assets/images/tshirt.jpg'},
     ];
 
     return Scaffold(
