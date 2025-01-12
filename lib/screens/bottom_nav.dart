@@ -59,7 +59,7 @@ class BottomNav extends StatelessWidget {
                     index: 0,
                   ),
                   _buildNavItem(
-                    icon: Icons.favorite_rounded,
+                    icon: Icons.shopping_cart,
                     label: 'Favorites',
                     index: 1,
                   ),

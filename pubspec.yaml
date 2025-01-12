@@ -70,6 +70,15 @@ flutter:
   assets:
     - assets/images/logogoogle.png
     - assets/images/facebooklogo.png
+    - assets/images/cap.jpg
+    - assets/images/hoodie.jpg
+    - assets/images/jackets.jpg
+    - assets/images/poloshirt.jpg
+    - assets/images/shocks.jpg
+    - assets/images/shoes.jpg
+    - assets/images/sweater.jpg
+    - assets/images/tshirt.jpg
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

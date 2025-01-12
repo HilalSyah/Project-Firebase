@@ -19,7 +19,6 @@ class ProfileFireBase extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.all(20),
           children: [
-            // ProfileFireBase Picture
             CircleAvatar(
               radius: 60,
               backgroundColor: Color(0xFFB2D3C2),
@@ -30,7 +29,6 @@ class ProfileFireBase extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            // ProfileFireBase Info Card
             Card(
               elevation: 8,
               color: Color(0xFFE8F5E9),
@@ -52,13 +50,13 @@ class ProfileFireBase extends StatelessWidget {
                         ),
                       ),
                       subtitle: Obx(() => Text(
-                        controller.name.value,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      )),
+                            controller.name.value,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          )),
                     ),
                     Divider(),
                     ListTile(
@@ -72,40 +70,19 @@ class ProfileFireBase extends StatelessWidget {
                         ),
                       ),
                       subtitle: Obx(() => Text(
-                        controller.email.value,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      )),
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.phone, color: Color(0xFFB2D3C2)),
-                      title: Text(
-                        'Nomor Telepon',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFB2D3C2),
-                        ),
-                      ),
-                      subtitle: Obx(() => Text(
-                        controller.phone.value,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      )),
+                            controller.email.value,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          )),
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(height: 30),
-            // Edit Profile Button
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -126,7 +103,6 @@ class ProfileFireBase extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            // Logout Button
             SizedBox(
               width: double.infinity,
               height: 50,
