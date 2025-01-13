@@ -56,15 +56,15 @@ class LoginScreen extends StatelessWidget {
                   Obx(() => loginController.isLoading.value
                       ? CircularProgressIndicator()
                       : CustomButton(
-                          text: 'Login',
-                          onPressed: () {
-                            loginController.login(
-                              nameController.text,
-                              emailController.text,
-                              passwordController.text,
-                            );
-                          },
-                        )),
+                    text: 'Login',
+                    onPressed: () {
+                      loginController.login(
+                        nameController.text,
+                        emailController.text,
+                        passwordController.text,
+                      );
+                    },
+                  )),
                   SizedBox(height: 20),
                   Text(
                     'or login with',

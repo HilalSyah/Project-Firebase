@@ -16,7 +16,7 @@ class LoginController extends GetxController {
     // Tampilkan notifikasi setelah login berhasil
     await _firebaseApi.showNotification(
       title: 'Login Berhasil',
-      body: 'Selamat datang kembali, $name!',
+      body: 'Selamat datang kembali, $name !!!',
     );
 
     // Update nama dan email di ProfileControllerFB

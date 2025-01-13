@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_firebase/controllers/profile_controller.dart';
+import '../Service/Auth.dart';
 import 'editprofile_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../Service/auth_service.dart';
+
 
 class ProfileFireBase extends StatelessWidget {
   final ProfileControllerFB controller = Get.find();
-  final AuthService _authService = AuthService();
+  final AuthService _authService = AuthService() ;
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +54,13 @@ class ProfileFireBase extends StatelessWidget {
                         ),
                       ),
                       subtitle: Obx(() => Text(
-                            controller.name.value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          )),
+                        controller.name.value,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      )),
                     ),
                     Divider(),
                     ListTile(
@@ -74,13 +74,13 @@ class ProfileFireBase extends StatelessWidget {
                         ),
                       ),
                       subtitle: Obx(() => Text(
-                            controller.email.value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          )),
+                        controller.email.value,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      )),
                     ),
                   ],
                 ),

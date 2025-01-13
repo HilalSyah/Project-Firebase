@@ -1,31 +1,34 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:project_firebase/screens/login_screen.dart';
+import 'firebase_api.dart';
+
+import '../components/custom_textbutton.dart';
 
 class AuthService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseApi _firebaseApi = FirebaseApi();
+
+  // Sign Up dengan Email
   Future<void> signup({
-    required String Email,
-    required String Password,
-    BuildContext? context,
+    required String email,
+    required String password,
   }) async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: Email, password: Password);
-
-      if (context != null) {
-        // Jika proses signup berhasil, navigasi ke halaman login
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
-        );
-      }
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      Get.offAllNamed('/login');
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
-        message = 'The password provided';
+        message = 'Password terlalu lemah';
       } else if (e.code == 'email-already-in-use') {
-        message = 'An Account already';
+        message = 'Email sudah terdaftar';
       }
       Fluttertoast.showToast(
         msg: message,
@@ -35,6 +38,64 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 14.0,
       );
-    } catch (e) {}
+    }
+  }
+
+  // Sign In dengan Google
+  Future<void> signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? gUser = await _googleSignIn.signIn();
+      if (gUser == null) return;
+
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken,
+      );
+
+      final UserCredential userCredential =
+      await _auth.signInWithCredential(credential);
+      final User? user = userCredential.user;
+
+      Get.offAllNamed('/home');
+
+    } catch (e) {
+      print('Error saat login dengan Google: $e');
+      Get.snackbar(
+        'Error',
+        'Gagal login dengan Google',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  // Sign Out
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+
+      if (await _googleSignIn.isSignedIn()) {
+        await _googleSignIn.signOut();
+      }
+
+      Get.offAllNamed('/login');
+    } catch (e) {
+      print('Error during logout: $e');
+      Get.snackbar(
+        'Error',
+        'Gagal logout. Silakan coba lagi.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  // Cek status login
+  bool isLoggedIn() {
+    return _auth.currentUser != null;
+  }
+
+  // Get current user
+  User? getCurrentUser() {
+    return _auth.currentUser;
   }
 }

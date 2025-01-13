@@ -108,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                               signUpController.signUp(
                                   username, email, password);
                               AuthService()
-                                  .signup(Email: email, Password: password);
+                                  .signup( email: email, password: password);
                             }
                           },
                         )),
