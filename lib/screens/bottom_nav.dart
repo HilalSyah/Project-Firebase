@@ -7,7 +7,6 @@ import 'profile_screen.dart';
 class BottomNav extends StatelessWidget {
   BottomNav({Key? key}) : super(key: key);
 
-
   final RxInt currentIndex = 0.obs;
 
   final screens = [
@@ -16,7 +15,6 @@ class BottomNav extends StatelessWidget {
     ProfileFireBase(),
   ];
 
-  
   void changePage(int index) {
     currentIndex.value = index;
   }
@@ -26,31 +24,31 @@ class BottomNav extends StatelessWidget {
     return Scaffold(
       body: Obx(() => screens[currentIndex.value]),
       bottomNavigationBar: Container(
-        height: 80,
+        height: 93, // Ukuran bottom nav bar yang lebih kecil
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white, // Ganti dengan warna putih agar lebih bersih
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: Offset(0, -3),
+              color: Colors.black.withOpacity(0.1), // Shadow lebih lembut
+              blurRadius: 15,
+              spreadRadius: 2,
+              offset: Offset(0, -4),
             ),
           ],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: Obx(
-              () => Row(
+                  () => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _buildNavItem(
@@ -59,7 +57,7 @@ class BottomNav extends StatelessWidget {
                     index: 0,
                   ),
                   _buildNavItem(
-                    icon: Icons.shopping_cart,
+                    icon: Icons.favorite_rounded,
                     label: 'Favorites',
                     index: 1,
                   ),
@@ -87,33 +85,30 @@ class BottomNav extends StatelessWidget {
     return GestureDetector(
       onTap: () => changePage(index),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: Duration(milliseconds: 300),
         padding: EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 4,
+          horizontal: 16,
+          vertical: isSelected ? 14 : 10,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue.shade50 : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-          border: isSelected
-              ? Border.all(color: Colors.blue.shade100, width: 1.5)
-              : null,
+          color: isSelected ? Color(0xFF005B96) : Colors.transparent, // Warna biru pastel saat dipilih
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.blue : Colors.grey.shade400,
-              size: isSelected ? 22 : 20,
+              color: isSelected ? Colors.white : Colors.grey.shade600,
+              size: isSelected ? 28 : 24,
             ),
-            SizedBox(height: 2),
+            SizedBox(height: 6),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? Colors.blue : Colors.grey.shade400,
-                fontSize: 9,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                color: isSelected ? Colors.white : Colors.grey.shade600,
+                fontSize: 12,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 letterSpacing: 0.3,
               ),
             ),

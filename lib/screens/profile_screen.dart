@@ -111,25 +111,87 @@ class ProfileFireBase extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton.icon(
-                onPressed: () => _authService.signOut(),
-                icon: Icon(Icons.logout),
-                label: Text(
-                  'Logout',
-                  style: TextStyle(fontSize: 18),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: ElevatedButton.icon(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Color(0xFFF9F9F9), // Warna lembut untuk latar belakang
+                    title: Row(
+                      children: [
+                        Icon(Icons.logout, color: Color(0xFFD9534F)),
+                        SizedBox(width: 10),
+                        Text(
+                          'Logout?',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF333333), // Warna gelap untuk teks
+                          ),
+                        ),
+                      ],
+                    ),
+                    content: Text(
+                      'Apakah Anda yakin ingin logout? Semua sesi akan diakhiri.',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF666666), // Warna abu-abu elegan
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Tutup dialog
+                        },
+                        child: Text(
+                          'BATAL',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF5A9BD5), // Warna biru pastel
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Tutup dialog
+                          _authService.signOut(); // Logout
+                        },
+                        child: Text(
+                          'LOGOUT',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFD9534F), // Warna merah lembut untuk tombol logout
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            icon: Icon(Icons.logout),
+            label: Text(
+              'Logout',
+              style: TextStyle(fontSize: 18),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
-          ],
+          ),
+        )
+        ],
         ),
       ),
     );
