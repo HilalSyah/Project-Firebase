@@ -33,12 +33,6 @@ class LoginScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 30),
-                  CustomTextField(
-                    hintText: 'Username',
-                    controller: nameController,
-                    prefixIcon: Icons.person,
-                  ),
                   SizedBox(height: 20),
                   CustomTextField(
                     hintText: 'Email',

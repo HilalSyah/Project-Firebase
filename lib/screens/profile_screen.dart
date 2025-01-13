@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_firebase/controllers/profile_controller.dart';
+import '../Service/Auth.dart';
 import 'editprofile_screen.dart';
 
 class ProfileFireBase extends StatelessWidget {
   final ProfileControllerFB controller = Get.find();
+  final AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -113,9 +115,7 @@ class ProfileFireBase extends StatelessWidget {
               width: double.infinity,
               height: 50,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  Get.offAllNamed('/');
-                },
+                onPressed: () => _authService.signOut(),
                 icon: Icon(Icons.logout),
                 label: Text(
                   'Logout',

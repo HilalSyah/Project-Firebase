@@ -107,42 +107,13 @@ class SignUpScreen extends StatelessWidget {
                               // Jika validasi berhasil, lakukan signup
                               signUpController.signUp(
                                   username, email, password);
-                              AuthService()
-                                  .signup(Email: email, Password: password);
+                              AuthService().signup(
+                                  username: username,
+                                  email: email,
+                                  password: password);
                             }
                           },
                         )),
-                  SizedBox(height: 20),
-                  Text(
-                    'or sign up with',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Customlogin(
-                        onPressed: () {
-                          print('Google pressed');
-                        },
-                        backgroundColor: Colors.white,
-                        imagePath: 'assets/images/logogoogle.png',
-                        imageSize: 18,
-                      ),
-                      SizedBox(width: 20),
-                      Customlogin(
-                        onPressed: () {
-                          print('Facebook pressed');
-                        },
-                        backgroundColor: Colors.white,
-                        imagePath: 'assets/images/facebooklogo.png',
-                        imageSize: 18,
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
