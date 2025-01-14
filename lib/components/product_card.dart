@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final String name;
   final String price;
-  final String imagePath;
+  final String imageUrl;
   final VoidCallback onAddToCart;
 
   const ProductCard({
     Key? key,
     required this.name,
     required this.price,
-    required this.imagePath,
+    required this.imageUrl,
     required this.onAddToCart,
   }) : super(key: key);
 
@@ -32,8 +32,8 @@ class ProductCard extends StatelessWidget {
               flex: 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  imagePath,
+                child: Image.network(
+                  imageUrl,
                   fit: BoxFit.cover, // Gambar akan menyesuaikan ruang yang tersedia
                   width: double.infinity, // Pastikan gambar memenuhi lebar penuh
                   height: double.infinity, // Pastikan gambar memenuhi tinggi penuh

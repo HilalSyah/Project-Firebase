@@ -88,7 +88,7 @@ class BottomNav extends StatelessWidget {
         duration: Duration(milliseconds: 300),
         padding: EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: isSelected ? 14 : 10,
+          vertical: isSelected ? 8 : 10,
         ),
         decoration: BoxDecoration(
           color: isSelected ? Color(0xFF005B96) : Colors.transparent, // Warna biru pastel saat dipilih
@@ -102,7 +102,7 @@ class BottomNav extends StatelessWidget {
               color: isSelected ? Colors.white : Colors.grey.shade600,
               size: isSelected ? 28 : 24,
             ),
-            SizedBox(height: 6),
+            SizedBox(height: 2),
             Text(
               label,
               style: TextStyle(

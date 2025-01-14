@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class Gogleauth {
   final FirebaseAuth firebaseGoogleAuth = FirebaseAuth.instance;
@@ -25,7 +25,7 @@ class Gogleauth {
 
       // Login ke Firebase
       final UserCredential userCredential =
-          await firebaseGoogleAuth.signInWithCredential(credential);
+      await firebaseGoogleAuth.signInWithCredential(credential);
 
       final User? user = userCredential.user;
 
@@ -41,14 +41,36 @@ class Gogleauth {
 
         print("Data pengguna berhasil disimpan ke Firestore.");
 
+        // Tampilkan notifikasi berhasil login
+        AwesomeNotifications().createNotification(
+          content: NotificationContent(
+            id: 1,
+            channelKey: 'basic_channel',
+            title: 'Login Berhasil',
+            body: 'Selamat datang, ${user.displayName}!',
+            notificationLayout: NotificationLayout.Default,
+          ),
+        );
+
         // Navigasi ke HomeScreen setelah login berhasil
         Navigator.of(context).pushNamedAndRemoveUntil(
           '/home',
-          (route) => false,
+              (route) => false,
         );
       }
     } catch (e) {
       print("Error saat login dengan Google: $e");
+
+      // Tampilkan notifikasi error
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: 2,
+          channelKey: 'basic_channel',
+          title: 'Login Gagal',
+          body: 'Terjadi kesalahan: $e',
+          notificationLayout: NotificationLayout.Default,
+        ),
+      );
     }
   }
 }

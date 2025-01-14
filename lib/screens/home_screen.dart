@@ -8,14 +8,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> products = [
-      {'name': 'cap', 'price': 'Rp 120.000', 'image': 'assets/images/cap.jpg'},
-      {'name': 'Hoodie', 'price': 'Rp 250.000', 'image': 'assets/images/hoodie.jpg'},
-      {'name': 'Jacket', 'price': 'Rp 300.000', 'image': 'assets/images/jackets.jpg'},
-      {'name': 'polo shirt', 'price': 'Rp 80.000', 'image': 'assets/images/poloshirt.jpg'},
-      {'name': 'shocks', 'price': 'Rp 80.000', 'image': 'assets/images/shocks.jpg'},
-      {'name': 'shoes', 'price': 'Rp 80.000', 'image': 'assets/images/shoes.jpg'},
-      {'name': 'sweater', 'price': 'Rp 80.000', 'image': 'assets/images/sweater.jpg'},
-      {'name': 't shirt', 'price': 'Rp 80.000', 'image': 'assets/images/tshirt.jpg'},
+      {'name': 'cap', 'price': 'Rp 120.000', 'image': 'https://images2.imgbox.com/b8/3c/nJRnAXRA_o.jpg'},
+      {'name': 'Hoodie', 'price': 'Rp 250.000', 'image': 'https://images2.imgbox.com/a3/7e/UQa5dyjf_o.jpg'},
+      {'name': 'Jacket', 'price': 'Rp 300.000', 'image': 'https://images2.imgbox.com/ca/81/FDor6ltJ_o.jpg'},
+      {'name': 'polo shirt', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/58/24/XMtsbToB_o.jpg'},
+      {'name': 'shocks', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/da/7b/Iv5JqfyO_o.jpg'},
+      {'name': 'shoes', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/cb/15/wg1bYmvY_o.jpg'},
+      {'name': 'sweater', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/7e/24/P5waexK3_o.jpg'},
+      {'name': 't shirt', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/3e/c5/4Pbpxz4v_o.jpg'},
     ];
 
     return Scaffold(
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
             return ProductCard(
               name: product['name']!,
               price: product['price']!,
-              imagePath: product['image']!,
+              imageUrl: product['image']!,
               onAddToCart: () {
                 Get.snackbar(
                   'Keranjang',
