@@ -1,5 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:project_firebase/Bin/Home_Binding.dart';
+import 'package:project_firebase/Bin/Login_Binding.dart';
+import 'package:project_firebase/Bin/SignUp_Binding.dart';
+import 'package:project_firebase/Bin/SplashScreen_Binding.dart';
 import 'package:project_firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,10 +49,17 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => SplashScreen()),
-        GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/signup', page: () => SignUpScreen()),
-        GetPage(name: '/home', page: () => BottomNav()),
+        GetPage(
+            name: '/',
+            page: () => SplashScreen(),
+            binding: SplashScreenBinding()),
+        GetPage(
+            name: '/login', page: () => LoginScreen(), binding: LoginBinding()),
+        GetPage(
+            name: '/signup',
+            page: () => SignUpScreen(),
+            binding: SignUpBinding()),
+        GetPage(name: '/home', page: () => BottomNav(), binding: HomeBinding()),
       ],
     );
   }

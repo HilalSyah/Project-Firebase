@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SignUpController extends GetxController {
   final isLoading = false.obs;
   final errorMessage = ''.obs;
-  final errorType = 'none'.obs; // Untuk menentukan jenis error
+  final errorType = 'none'.obs;
 
   Color get errorColor =>
       errorType.value == 'empty' ? Colors.orange : Colors.red;
