@@ -9,7 +9,8 @@ import 'screens/signup_screen.dart';
 import 'screens/bottom_nav.dart';
 import 'package:project_firebase/controllers/profile_controller.dart';
 import 'package:project_firebase/Service/firebase_api.dart';
-
+import 'screens/cart_screen.dart';
+import 'controllers/cart_controller.dart';
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -18,9 +19,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  Get.put(ProfileControllerFB());
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Get.put(ProfileControllerFB());
+  Get.put(CartController());
 
   // Set up background message handler
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/signup', page: () => SignUpScreen()),
         GetPage(name: '/home', page: () => BottomNav()),
+        GetPage(name: '/cart', page: () => const CartScreen()),
       ],
     );
   }

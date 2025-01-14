@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/product_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Add this line
+import '../components/product_card.dart'; // Pastikan mengimpor ProductCard
+import '../controllers/cart_controller.dart'; // Pastikan mengimpor CartController
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,20 +10,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> products = [
-      {'name': 'cap', 'price': 'Rp 120.000', 'image': 'assets/images/cap.jpg'},
-      {'name': 'Hoodie', 'price': 'Rp 250.000', 'image': 'assets/images/hoodie.jpg'},
-      {'name': 'Jacket', 'price': 'Rp 300.000', 'image': 'assets/images/jackets.jpg'},
-      {'name': 'polo shirt', 'price': 'Rp 80.000', 'image': 'assets/images/poloshirt.jpg'},
-      {'name': 'shocks', 'price': 'Rp 80.000', 'image': 'assets/images/shocks.jpg'},
-      {'name': 'shoes', 'price': 'Rp 80.000', 'image': 'assets/images/shoes.jpg'},
-      {'name': 'sweater', 'price': 'Rp 80.000', 'image': 'assets/images/sweater.jpg'},
-      {'name': 't shirt', 'price': 'Rp 80.000', 'image': 'assets/images/tshirt.jpg'},
+      {'name': 'cap', 'price': 'Rp 120.000', 'image': 'https://images2.imgbox.com/b8/3c/nJRnAXRA_o.jpg'},
+      {'name': 'Hoodie', 'price': 'Rp 250.000', 'image': 'https://images2.imgbox.com/a3/7e/UQa5dyjf_o.jpg'},
+      {'name': 'Jacket', 'price': 'Rp 300.000', 'image': 'https://images2.imgbox.com/ca/81/FDor6ltJ_o.jpg'},
+      {'name': 'polo shirt', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/58/24/XMtsbToB_o.jpg'},
+      {'name': 'shocks', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/da/7b/Iv5JqfyO_o.jpg'},
+      {'name': 'shoes', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/cb/15/wg1bYmvY_o.jpg'},
+      {'name': 'sweater', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/7e/24/P5waexK3_o.jpg'},
+      {'name': 't shirt', 'price': 'Rp 80.000', 'image': 'https://images2.imgbox.com/3e/c5/4Pbpxz4v_o.jpg'},
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white, // Latar belakang putih
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF5F5DC), // Warna krem
+        backgroundColor: const Color(0xFFF5F5DC),
         elevation: 1,
         title: const Text(
           'Shop Baju Distro',
@@ -52,8 +54,20 @@ class HomeScreen extends StatelessWidget {
             return ProductCard(
               name: product['name']!,
               price: product['price']!,
-              imagePath: product['image']!,
+              imageUrl: product['image']!,
               onAddToCart: () {
+                final cartController = Get.find<CartController>();
+                cartController.addToCart(
+                  product['name']!,
+                  product['price']!,
+                  product['image']!,
+                );
+                // Add this block to save items to Firestore
+                FirebaseFirestore.instance.collection('cart').add({
+                  'name': product['name']!,
+                  'price': product['price']!,
+                  'image': product['image']!,
+                });
                 Get.snackbar(
                   'Keranjang',
                   '${product['name']} berhasil ditambahkan ke keranjang!',
@@ -69,4 +83,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

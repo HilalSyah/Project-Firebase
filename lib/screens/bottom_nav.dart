@@ -8,11 +8,12 @@ class BottomNav extends StatelessWidget {
   BottomNav({Key? key}) : super(key: key);
 
   final RxInt currentIndex = 0.obs;
+  final profileScreen = Get.put(ProfileFireBase()); // Inisialisasi di luar screens
 
   final screens = [
     HomeScreen(),
     FavoriteScreen(),
-    ProfileFireBase(),
+    ProfileFireBase(), // Gunakan instance yang sudah diinisialisasi
   ];
 
   void changePage(int index) {
@@ -24,16 +25,16 @@ class BottomNav extends StatelessWidget {
     return Scaffold(
       body: Obx(() => screens[currentIndex.value]),
       bottomNavigationBar: Container(
-        height: 93, // Ukuran bottom nav bar yang lebih kecil
+        height: 93,
         decoration: BoxDecoration(
-          color: Colors.white, // Ganti dengan warna putih agar lebih bersih
+          color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1), // Shadow lebih lembut
+              color: Colors.black.withOpacity(0.1),
               blurRadius: 15,
               spreadRadius: 2,
               offset: Offset(0, -4),
@@ -48,7 +49,7 @@ class BottomNav extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: Obx(
-                  () => Row(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _buildNavItem(
@@ -91,7 +92,7 @@ class BottomNav extends StatelessWidget {
           vertical: isSelected ? 14 : 10,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? Color(0xFF005B96) : Colors.transparent, // Warna biru pastel saat dipilih
+          color: isSelected ? Color(0xFF005B96) : Colors.transparent,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
@@ -118,3 +119,5 @@ class BottomNav extends StatelessWidget {
     );
   }
 }
+
+

@@ -4,28 +4,33 @@ import 'package:get/get.dart';
 class ProfileControllerFB extends GetxController {
   var name = ''.obs;
   var email = ''.obs;
-  var password = ''.obs; // Tambahkan variabel untuk password
+  var password = ''.obs;
+  var profilePicture = ''.obs; 
 
-  void updateProfile(String newName, String newEmail, String newPassword) {
+  void updateProfile(String newName, String newEmail, String newPassword, String newProfilePicture) {
     name.value = newName;
     email.value = newEmail;
-    password.value = newPassword; // Simpan password
+    password.value = newPassword;
+    profilePicture.value = newProfilePicture; 
   }
 
   Future<void> fetchProfile() async {
-    try {
-      final docRef = FirebaseFirestore.instance.collection('users').doc(
-          '6xIwg3ZzfuYHoLGXfdHUiuVVbbn1'); // Ganti dengan ID user yang sesuai
+  try {
+    final docRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc('6xIwg3ZzfuYHoLGXfdHUiuVVbbn1'); 
 
-      DocumentSnapshot doc = await docRef.get();
-      if (doc.exists) {
-        name.value = doc['displayName'] ?? ''; // Ambil data name
-        email.value = doc['email'] ?? ''; // Ambil data email
-      } else {
-        print('Document does not exist');
-      }
-    } catch (e) {
-      print("Failed to fetch profile: $e");
+    DocumentSnapshot doc = await docRef.get();
+    if (doc.exists) {
+      name.value = doc['displayName'] ?? '';
+      email.value = doc['email'] ?? '';
+      profilePicture.value = doc['profilePicture'] ?? '';
+    } else {
+      print('Document does not exist');
     }
+  } catch (e) {
+    print("Failed to fetch profile: $e");
   }
+}
+
 }
