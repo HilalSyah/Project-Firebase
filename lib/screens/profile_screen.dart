@@ -58,13 +58,13 @@ class ProfileFireBase extends StatelessWidget {
                         ),
                       ),
                       subtitle: Obx(() => Text(
-                            controller.name.value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          )),
+                        controller.name.value,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      )),
                     ),
                     Divider(),
                     ListTile(
@@ -78,13 +78,13 @@ class ProfileFireBase extends StatelessWidget {
                         ),
                       ),
                       subtitle: Obx(() => Text(
-                            controller.email.value,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          )),
+                        controller.email.value,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      )),
                     ),
                   ],
                 ),
