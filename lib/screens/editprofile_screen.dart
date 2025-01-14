@@ -81,7 +81,8 @@ class EditProfilePage extends StatelessWidget {
                   controller.updateProfile(
                     nameController.text,
                     emailController.text,
-                    passwordController.text, // Sertakan password
+                    passwordController.text,
+                    ''
                   );
                   Get.back(); // Kembali ke halaman Profile
                 },

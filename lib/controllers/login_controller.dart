@@ -40,7 +40,14 @@ class LoginController extends GetxController {
           body: 'Selamat datang kembali, $name!',
         );
 
-        profileController.updateProfile(name, email, password);
+        if (userCredential.user!.providerData[0].providerId == 'google.com') {
+          // User logged in with Google
+          String profilePicture = userDoc['profilePicture'] ?? '';
+          profileController.updateProfile(name, email, '', profilePicture);
+        } else {
+          // User logged in with email/password
+          profileController.updateProfile(name, email, password, '');
+        }
 
         await Future.delayed(const Duration(seconds: 1));
         // Navigasikan ke halaman home

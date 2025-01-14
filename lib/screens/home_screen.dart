@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/product_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Add this line
+import '../components/product_card.dart'; // Pastikan mengimpor ProductCard
+import '../controllers/cart_controller.dart'; // Pastikan mengimpor CartController
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,9 +21,9 @@ class HomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white, // Latar belakang putih
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF5F5DC), // Warna krem
+        backgroundColor: const Color(0xFFF5F5DC),
         elevation: 1,
         title: const Text(
           'Shop Baju Distro',
@@ -54,6 +56,18 @@ class HomeScreen extends StatelessWidget {
               price: product['price']!,
               imageUrl: product['image']!,
               onAddToCart: () {
+                final cartController = Get.find<CartController>();
+                cartController.addToCart(
+                  product['name']!,
+                  product['price']!,
+                  product['image']!,
+                );
+                // Add this block to save items to Firestore
+                FirebaseFirestore.instance.collection('cart').add({
+                  'name': product['name']!,
+                  'price': product['price']!,
+                  'image': product['image']!,
+                });
                 Get.snackbar(
                   'Keranjang',
                   '${product['name']} berhasil ditambahkan ke keranjang!',
@@ -69,4 +83,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
