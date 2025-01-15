@@ -7,6 +7,8 @@ import 'package:project_firebase/Bin/SplashScreen_Binding.dart';
 import 'package:project_firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_firebase/screens/before_login.dart';
+import 'Bin/before_Binding.dart';
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
@@ -15,6 +17,7 @@ import 'package:project_firebase/controllers/profile_controller.dart';
 import 'package:project_firebase/Service/firebase_api.dart';
 import 'screens/cart_screen.dart';
 import 'controllers/cart_controller.dart';
+import 'package:flutter/services.dart';  // Import this for full screen mode
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -34,6 +37,9 @@ Future<void> main() async {
   // Initialize Firebase API
   await FirebaseApi().initNotifications();
 
+  // Set screen to full screen (optional)
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
   runApp(const MyApp());
 }
 
@@ -48,6 +54,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
+        fontFamily: 'WorkSans', // Menambahkan font default 'Roboto'
       ),
       initialRoute: '/',
       getPages: [
@@ -56,12 +63,21 @@ class MyApp extends StatelessWidget {
             page: () => SplashScreen(),
             binding: SplashScreenBinding()),
         GetPage(
-            name: '/login', page: () => LoginScreen(), binding: LoginBinding()),
+            name: '/login',
+            page: () => LoginScreen(),
+            binding: LoginBinding()),
+        GetPage(
+            name: '/before',
+            page: () => BeforeLogin(),
+            binding: BeforeLoginBinding()),
         GetPage(
             name: '/signup',
             page: () => SignUpScreen(),
             binding: SignUpBinding()),
-        GetPage(name: '/home', page: () => BottomNav(), binding: HomeBinding()),
+        GetPage(
+            name: '/home',
+            page: () => BottomNav(),
+            binding: HomeBinding()),
       ],
     );
   }

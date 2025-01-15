@@ -14,7 +14,14 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
+            // Menambahkan gambar
+            Image.asset(
+              'assets/images/login.png', // Ganti dengan path gambar kamu
+              height: 150, // Sesuaikan ukuran gambar
+              width: 150, // Sesuaikan ukuran gambar
+            ),
+            SizedBox(height: 20),
+
           ],
         ),
       ),

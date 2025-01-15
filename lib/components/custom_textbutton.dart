@@ -30,6 +30,7 @@ class CustomRichTextButton extends StatelessWidget {
               style: TextStyle(
                 color: firstTextColor ?? Colors.grey[600],
                 fontSize: fontSize,
+                fontFamily: 'WorkSans'
               ),
             ),
             TextSpan(
@@ -38,6 +39,7 @@ class CustomRichTextButton extends StatelessWidget {
                 color: secondTextColor ?? Colors.blue,
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'WorkSans'
               ),
             ),
           ],

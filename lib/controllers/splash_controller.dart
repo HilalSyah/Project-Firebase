@@ -14,7 +14,7 @@ class SplashController extends GetxController {
 
   void checkAuth() async {
     await Future.delayed(
-        const Duration(seconds: 2)); // Delay untuk splash screen
+        const Duration(seconds: 5)); // Delay untuk splash screen
 
     // Cek apakah ada user yang sedang login
     final currentUser = _auth.currentUser ?? _googleAuth.getCurrentUser();
@@ -24,7 +24,7 @@ class SplashController extends GetxController {
       Get.offAllNamed('/home');
     } else {
       // User belum login, ke login screen
-      Get.offAllNamed('/login');
+      Get.offAllNamed('/before');
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_firebase/controllers/profile_controller.dart';
 import '../Service/Auth.dart';
+import '../controllers/profile_controller.dart';
 import 'editprofile_screen.dart';
 
 class ProfileFireBase extends StatelessWidget {

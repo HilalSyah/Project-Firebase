@@ -23,7 +23,7 @@ class SignUpController extends GetxController {
 
   bool validateEmptyFields(String username, String email, String password) {
     if (username.isEmpty || email.isEmpty || password.isEmpty) {
-      errorMessage.value = 'Semua field harus diisi';
+      errorMessage.value = 'Semua harus diisi';
       errorType.value = 'empty';
       return false;
     }
@@ -65,11 +65,6 @@ class SignUpController extends GetxController {
       return false;
     }
 
-    if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      errorMessage.value = 'Password harus mengandung simbol';
-      errorType.value = 'validation';
-      return false;
-    }
 
     return true;
   }
