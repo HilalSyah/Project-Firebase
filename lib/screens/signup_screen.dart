@@ -8,6 +8,7 @@ import '../components/custom_textfield.dart';
 import '../components/custom_login.dart';
 import '../components/custom_textbutton.dart';
 import '../controllers/signup_controller.dart';
+import 'dart:math'; // Import untuk menggunakan min
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -19,6 +20,9 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -26,11 +30,11 @@ class SignUpScreen extends StatelessWidget {
 
           return SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(screenWidth * 0.05),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: isSmallScreen ? 50 : 100),
+                  SizedBox(height: screenHeight * 0.05),
 
                   // Header Section
                   Column(
@@ -39,7 +43,8 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "Hey, Hello 👋",
                         style: TextStyle(
-                          fontSize: isSmallScreen ? 25 : 30,
+                          fontSize:
+                              min(screenWidth * 0.07, 30), // Batas maksimum 30
                           fontWeight: FontWeight.bold,
                           fontFamily: 'WorkSans',
                         ),
@@ -48,14 +53,15 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "Enter your credentials to access \n your account",
                         style: TextStyle(
-                          fontSize: isSmallScreen ? 16 : 18,
+                          fontSize:
+                              min(screenWidth * 0.05, 18), // Batas maksimum 18
                           fontWeight: FontWeight.bold,
                           fontFamily: 'WorkSans',
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: isSmallScreen ? 40 : 60),
+                  SizedBox(height: screenHeight * 0.05),
 
                   // Social Login Buttons
                   Row(
@@ -90,7 +96,6 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-
 
                   SizedBox(height: isSmallScreen ? 15 : 20),
 
@@ -147,37 +152,37 @@ class SignUpScreen extends StatelessWidget {
                   // Error Message
                   Obx(() => signUpController.errorMessage.value.isNotEmpty
                       ? Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: signUpController.errorBackgroundColor,
-                      border: Border.all(
-                        color: signUpController.errorBorderColor,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          signUpController.errorIcon,
-                          color: signUpController.errorColor,
-                          size: isSmallScreen ? 18 : 20,
-                        ),
-                        SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            signUpController.errorMessage.value,
-                            style: TextStyle(
-                              color: signUpController.errorColor,
-                              fontSize: isSmallScreen ? 10 : 12,
-                              height: 1.5,
+                          width: double.infinity,
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: signUpController.errorBackgroundColor,
+                            border: Border.all(
+                              color: signUpController.errorBorderColor,
+                              width: 1,
                             ),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
+                          child: Row(
+                            children: [
+                              Icon(
+                                signUpController.errorIcon,
+                                color: signUpController.errorColor,
+                                size: isSmallScreen ? 18 : 20,
+                              ),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  signUpController.errorMessage.value,
+                                  style: TextStyle(
+                                    color: signUpController.errorColor,
+                                    fontSize: isSmallScreen ? 10 : 12,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       : SizedBox()),
 
                   SizedBox(height: isSmallScreen ? 15 : 20),
@@ -192,7 +197,7 @@ class SignUpScreen extends StatelessWidget {
                         final password = passwordController.text;
 
                         if (signUpController.validateEmptyFields(
-                            username, email, password) &&
+                                username, email, password) &&
                             signUpController.validateUsername(username) &&
                             signUpController.validateEmail(email) &&
                             signUpController.validatePassword(password)) {
@@ -219,7 +224,8 @@ class SignUpScreen extends StatelessWidget {
                       child: Text(
                         'Sign up',
                         style: TextStyle(
-                          fontSize: isSmallScreen ? 20 : 25,
+                          fontSize:
+                              min(screenWidth * 0.07, 25), // Batas maksimum 25
                           fontFamily: 'WorkSans',
                           fontWeight: FontWeight.bold,
                         ),

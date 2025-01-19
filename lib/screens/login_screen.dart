@@ -7,6 +7,7 @@ import '../components/custom_textfield.dart';
 import '../components/custom_login.dart';
 import '../components/custom_textbutton.dart';
 import '../controllers/login_controller.dart';
+import 'dart:math'; // Import untuk menggunakan min
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -18,22 +19,26 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      body: SingleChildScrollView( // Memungkinkan scroll pada layar kecil
+      body: SingleChildScrollView(
+        // Memungkinkan scroll pada layar kecil
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Gambar di atas
             Container(
               width: double.infinity,
-              height: 300,  // Tentukan tinggi gambar secara eksplisit
+              height: min(screenHeight * 0.15, 300), // Batas maksimum 300
               child: Image.asset(
-                'assets/images/login.png',
-                fit: BoxFit.cover,
+                'assets/images/nobg.png',
+                fit: BoxFit.fitWidth,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(screenWidth * 0.05),
               child: Column(
                 children: [
                   // Judul di atas form
@@ -43,9 +48,10 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Let’s Connect With Us!",
+                          "Let's Connect With Us!",
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: min(
+                                screenWidth * 0.08, 30), // Batas maksimum 30
                             fontWeight: FontWeight.bold,
                             fontFamily: 'WorkSans',
                           ),
@@ -53,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight * 0.03),
 
                   // Form input
                   CustomTextField(
@@ -69,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                     labelText: 'Password',
                   ),
 
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight * 0.03),
 
                   // Tombol login
                   SizedBox(
@@ -92,19 +98,20 @@ class LoginScreen extends StatelessWidget {
                           horizontal: 30.0,
                           vertical: 15.0,
                         ),
-                        minimumSize: Size(double.infinity, 40),  // Ukuran penuh
+                        minimumSize: Size(double.infinity, 40),
                       ),
                       child: Text(
                         'Login',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize:
+                              min(screenWidth * 0.07, 25), // Batas maksimum 25
                           fontFamily: 'WorkSans',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight * 0.03),
 
                   // Separator
                   Row(
@@ -131,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight * 0.03),
 
                   // Tombol sign up dengan Google
                   CustomButton(
@@ -144,13 +151,13 @@ class LoginScreen extends StatelessWidget {
                       }
                     },
                     imagePath: 'assets/images/logogoogle.png',
-                    textSize: 22,
+                    textSize: min(screenWidth * 0.05, 22), // Batas maksimum 22
                   ),
                   CustomButton(
                     text: "Continue with Facebook",
                     onPressed: () {},
                     imagePath: 'assets/images/facebooklogo.png',
-                    textSize: 22,
+                    textSize: min(screenWidth * 0.06, 22), // Batas maksimum 22
                   ),
                 ],
               ),
