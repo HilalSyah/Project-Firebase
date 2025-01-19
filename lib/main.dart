@@ -1,21 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:project_firebase/Bin/Home_Binding.dart';
 import 'package:project_firebase/Bin/Login_Binding.dart';
 import 'package:project_firebase/Bin/SignUp_Binding.dart';
 import 'package:project_firebase/Bin/SplashScreen_Binding.dart';
 import 'package:project_firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_firebase/screens/home_screen.dart';
 import 'package:project_firebase/screens/before_login.dart';
+import 'package:project_firebase/screens/profile_screen.dart';
 import 'Bin/before_Binding.dart';
+import 'Bin/home_binding.dart';
+import 'Bin/profile_binding.dart';
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
-import 'screens/bottom_nav.dart';
 import 'package:project_firebase/controllers/profile_controller.dart';
 import 'package:project_firebase/Service/firebase_api.dart';
-import 'screens/cart_screen.dart';
 import 'controllers/cart_controller.dart';
 import 'package:flutter/services.dart';  // Import this for full screen mode
 
@@ -76,8 +77,15 @@ class MyApp extends StatelessWidget {
             binding: SignUpBinding()),
         GetPage(
             name: '/home',
-            page: () => BottomNav(),
-            binding: HomeBinding()),
+            page: () => Home(),
+            binding: HomeBinding ()),
+        GetPage(
+            name: '/profile',
+            page:  () =>  ProfileScreen(),
+            binding: ProfileBinding(),
+            transition: Transition.rightToLeft,
+        )
+
       ],
     );
   }

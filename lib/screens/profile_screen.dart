@@ -4,7 +4,7 @@ import '../Service/Auth.dart';
 import '../controllers/profile_controller.dart';
 import 'editprofile_screen.dart';
 
-class ProfileFireBase extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   final ProfileControllerFB controller = Get.find();
   final AuthService _authService = AuthService();
 
@@ -16,7 +16,12 @@ class ProfileFireBase extends StatelessWidget {
       appBar: AppBar(
         title: Text('ProfileFireBase'),
         backgroundColor: Color(0xFFB2D3C2),
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Get.back();  // Fungsi ini akan membawa pengguna kembali ke layar sebelumnya
+          },
+        ),
       ),
       body: Container(
         color: Color(0xFFF5F5DC),
@@ -31,8 +36,7 @@ class ProfileFireBase extends StatelessWidget {
                   'https://lh3.googleusercontent.com/a/ACg8ocJPlHdLVFmob1OsaReHyUavuO5_KgYEDm3a7WoFcarrCTfRKg=s96-c',
                   width: 120, // Sesuaikan lebar gambar sesuai kebutuhan
                   height: 120, // Sesuaikan tinggi gambar sesuai kebutuhan
-                  fit: BoxFit
-                      .cover, // Sesuaikan bagaimana gambar akan diisi dalam avatar
+                  fit: BoxFit.cover, // Sesuaikan bagaimana gambar akan diisi dalam avatar
                 ),
               ),
             ),
