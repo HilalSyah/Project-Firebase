@@ -1,102 +1,102 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:project_firebase/Profile/profile_controller.dart';
-
-
 
 class EditProfilePage extends StatelessWidget {
   final ProfileControllerFB controller = Get.find();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController =
-      TextEditingController(); // Tambahkan controller untuk password
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     // Isi TextField dengan data saat ini
     nameController.text = controller.name.value;
     emailController.text = controller.email.value;
-    passwordController.text =
-        controller.password.value; // Isi password jika ada
+    passwordController.text = controller.password.value;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
-        backgroundColor: Color(0xFFB2D3C2), // Warna AppBar
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24.0,
+            color: Colors.white,
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blue.shade900, Colors.lightBlueAccent], // Warna gradien biru
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        elevation: 12.0, // Menambahkan efek bayangan
       ),
-      body: Container(
-        color: Color(0xFFF5F5DC), // Mengubah warna latar belakang menjadi krem
-        padding: EdgeInsets.all(20),
-        child: ListView(
-          // Menggunakan ListView untuk memungkinkan scroll otomatis
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Input untuk Nama
             TextField(
               controller: nameController,
-              maxLength: 30, // Membatasi panjang karakter menjadi 30
-              decoration: InputDecoration(
-                labelText: 'Nama',
-                labelStyle: TextStyle(color: Color(0xFFB2D3C2)), // Warna label
+              decoration: const InputDecoration(
+                labelText: 'Name',
+                labelStyle: TextStyle(color: Color.fromARGB(255, 0, 2, 3)), // Warna label biru
+                prefixIcon: Icon(Icons.person, color: Color.fromARGB(255, 78, 158, 223)), // Warna ikon biru
                 border: OutlineInputBorder(),
-                counterText: '', // Menyembunyikan penghitung karakter
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue), // Warna border fokus biru
+                ),
               ),
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(
-                    RegExp(r'[a-zA-Z\s]')), // Hanya mengizinkan huruf dan spasi
-              ],
             ),
-            SizedBox(height: 20),
-            // Input untuk Email
+            const SizedBox(height: 16),
             TextField(
               controller: emailController,
-              maxLength: 30, // Membatasi panjang karakter menjadi 30
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Email',
-                labelStyle: TextStyle(color: Color(0xFFB2D3C2)), // Warna label
+                labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),
-                counterText: '', // Menyembunyikan penghitung karakter
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            // Input untuk Nomor Telepon
-
-            SizedBox(height: 20),
-            // Input untuk Password
+            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
-              obscureText: true, // Menyembunyikan karakter password
-              decoration: InputDecoration(
+              obscureText: true,
+              decoration: const InputDecoration(
                 labelText: 'Password',
-                labelStyle: TextStyle(color: Color(0xFFB2D3C2)), // Warna label
+                labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
               ),
             ),
-            SizedBox(height: 30),
-            // Tombol Simpan
-            SizedBox(
-              width: double.infinity,
-              height: 50,
+            const SizedBox(height: 24),
+            Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Perbarui data di controller
-                  controller.updateProfile(
-                    nameController.text,
-                    emailController.text,
-                    passwordController.text,
-                    ''
-                  );
-                  Get.back(); // Kembali ke halaman Profile
+                  // Tambahkan aksi simpan
                 },
-                child: Text(
-                  'Simpan',
-                  style: TextStyle(fontSize: 18),
-                ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFB2D3C2), // Warna tombol
+                  backgroundColor: Colors.blue, // Warna tombol biru
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(12.0), // Membuat sudut lebih bulat
                   ),
+                  elevation: 8.0, // Menambahkan efek bayangan
+                  padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24.0), // Menambah padding
+                ),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), // Mengubah warna dan gaya teks
                 ),
               ),
             ),

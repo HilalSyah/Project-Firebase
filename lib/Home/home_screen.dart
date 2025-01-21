@@ -15,7 +15,28 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CRUD Firebase'),
+        title: const Text(
+          'Admin Toko',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22.0, // Mengubah ukuran teks
+            color: Colors.white, // Mengubah warna teks
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue.shade900, // Warna biru tua
+                Colors.blue,          // Warna biru
+                Colors.lightBlueAccent, // Warna biru muda
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        elevation: 10.0, // Menambahkan efek bayangan
         actions: [
           GestureDetector(
             onTap: () {
@@ -23,53 +44,125 @@ class HomeScreen extends StatelessWidget {
             },
             child: const Padding(
               padding: EdgeInsets.all(8.0),
-              child: Icon(Icons.person),
+              child: Icon(Icons.person, color: Colors.white), // Mengubah warna ikon
             ),
           ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: controller.tasksStream,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: Padding(
+        padding: const EdgeInsets.all(8.0), // Tambahkan padding di sekitar ListView
+        child: StreamBuilder<QuerySnapshot>(
+          stream: controller.tasksStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          final tasks = snapshot.data!.docs;
+            final tasks = snapshot.data!.docs;
 
-          return ListView.builder(
-            itemCount: tasks.length,
-            itemBuilder: (context, index) {
-              final task = tasks[index];
-              final data = task.data() as Map<String, dynamic>;
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Dua kartu per baris
+                childAspectRatio: 0.75, // Rasio aspek untuk menyesuaikan tinggi kartu
+                crossAxisSpacing: 8.0, // Spasi antar kolom
+                mainAxisSpacing: 8.0, // Spasi antar baris
+              ),
+              itemCount: tasks.length,
+              itemBuilder: (context, index) {
+                final task = tasks[index];
+                final data = task.data() as Map<String, dynamic>;
 
-              return CustomCard(
-                title: data['title'] ?? 'No Title',
-                description: data['description'] ?? 'No Description',
-                imageUrl: data['imageUrl'] ?? '',
-                price: data['price'] ?? 0.0,
-                onupdate: () {
-                  Get.dialog(
-                    UpdateTaskDialog(
-                      id: task.id,
-                      currentTitle: data['title'] ?? '',
-                      currentDescription: data['description'] ?? '',
-                      currentImageUrl: data['imageUrl'] ?? '',
-                    ),
-                  );
-                },
-                onDelete: () => controller.deleteTask(task.id),
-              );
-            },
-          );
-        },
+                return CustomCard(
+                  imageUrl: data['imageUrl'] ?? '',
+                  title: data['title'] ?? 'No Title',
+                  description: data['description'] ?? 'No Description',
+                  price: data['price'] ?? 0.0,
+                  onupdate: () {
+                    Get.dialog(
+                      UpdateTaskDialog(
+                        id: task.id,
+                        currentTitle: data['title'] ?? '',
+                        currentDescription: data['description'] ?? '',
+                        currentImageUrl: data['imageUrl'] ?? '',
+                      ),
+                    );
+                  },
+                  onDelete: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          backgroundColor: Colors.blue.shade50, // Latar belakang dialog biru muda
+                          title: Row(
+                            children: const [
+                              Icon(Icons.warning, color: Colors.redAccent), // Ikon peringatan
+                              SizedBox(width: 8),
+                              Text(
+                                'Konfirmasi Hapus',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue, // Warna teks biru
+                                ),
+                              ),
+                            ],
+                          ),
+                          content: const Text(
+                            'Apakah Anda yakin ingin menghapus tugas ini?',
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Menutup dialog
+                              },
+                              child: const Text(
+                                'Batal',
+                                style: TextStyle(color: Colors.blue), // Warna teks biru
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                controller.deleteTask(task.id);
+                                Navigator.of(context).pop(); // Menutup dialog
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.redAccent, // Warna tombol merah
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                elevation: 5.0, // Menambahkan efek bayangan
+                              ),
+                              child: const Text(
+                                'Hapus',
+                                style: TextStyle(color: Colors.white), // Warna teks putih
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.dialog(AddTaskDialog()),
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue, // Warna tombol biru
+        elevation: 8.0, // Menambahkan efek bayangan
+        child: const Icon(
+          Icons.add,
+          color: Colors.white, // Mengubah warna ikon
+          size: 28.0, // Menambah ukuran ikon
+        ),
       ),
     );
   }

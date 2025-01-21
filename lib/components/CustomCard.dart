@@ -20,73 +20,102 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       margin: const EdgeInsets.all(8.0),
-      padding: const EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            blurRadius: 5.0,
-            offset: const Offset(0, 2),
-          ),
-        ],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Gambar
-          Container(
-            height: 150,
-            color: Colors.black,
-            child: Center(
+      elevation: 4.0,
+      color: Colors.blue.shade50, // Latar belakang kartu biru muda
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start, // Semua elemen di kiri
+          children: [
+            // Gambar
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
               child: imageUrl.isNotEmpty
-                  ? Image.network(imageUrl, fit: BoxFit.cover)
-                  : const Icon(Icons.image_not_supported, color: Colors.white),
+                  ? Image.network(
+                      imageUrl,
+                      height: 105, // Sesuaikan tinggi gambar
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(
+                      height: 80, // Sesuaikan tinggi placeholder
+                      color: Colors.blue.shade100, // Warna latar belakang placeholder
+                      child: const Center(
+                        child: Icon(Icons.image_not_supported, color: Colors.blueGrey),
+                      ),
+                    ),
             ),
-          ),
-          const SizedBox(height: 8.0),
-          // Judul dan Harga
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            const SizedBox(height: 2.0),
+            // Judul dan Harga
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 14, // Ukuran font lebih kecil
+                fontWeight: FontWeight.bold,
+                color: Colors.blue, // Warna teks biru
               ),
-              Text(
-                'Price: \$${price.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 16, color: Colors.green),
+            ),
+            const SizedBox(height: 4.0), // Jarak antara nama dan harga
+            Text(
+              '\$${price.toStringAsFixed(2)}',
+              style: const TextStyle(
+                fontSize: 13, // Ukuran font lebih kecil
+                color: Colors.blueAccent, // Warna teks harga biru
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-          const SizedBox(height: 8.0),
-          // Deskripsi
-          Text(
-            description,
-            style: const TextStyle(fontSize: 14, color: Colors.black54),
-          ),
-          const SizedBox(height: 12.0),
-          // Tombol Update dan Delete
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                onPressed: onupdate,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-                child: const Text('Update'),
-              ),
-              ElevatedButton(
-                onPressed: onDelete,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                child: const Text('Delete'),
-              ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 3.0), // Jarak antara harga dan deskripsi
+            // Deskripsi
+            Text(
+              description,
+              style: const TextStyle(fontSize: 12, color: Colors.blueGrey), // Ukuran font lebih kecil
+            ),
+            const SizedBox(height: 2.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: onupdate,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Warna tombol biru
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0), // Padding lebih kecil
+                  ),
+                  icon: const Icon(Icons.edit, size: 10, color: Colors.white), // Ukuran ikon lebih kecil
+                  label: const Text(
+                    'Update',
+                    style: TextStyle(color: Colors.white, fontSize: 10), // Ukuran font lebih kecil
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: onDelete,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent, // Warna tombol merah untuk kontras
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0), // Padding lebih kecil
+                  ),
+                  icon: const Icon(Icons.delete, size: 10, color: Colors.white), // Ukuran ikon lebih kecil
+                  label: const Text(
+                    'Delete',
+                    style: TextStyle(color: Colors.white, fontSize: 10), // Ukuran font lebih kecil
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
