@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:project_firebase/Profile/profile_controller.dart';
 
-import '../controllers/profile_controller.dart';
+
 
 class EditProfilePage extends StatelessWidget {
   final ProfileControllerFB controller = Get.find();

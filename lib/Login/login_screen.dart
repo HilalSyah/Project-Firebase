@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Service/GogleAuth.dart';
-import '../components/before/custom_text.dart';
-import '../components/before/custom_button.dart';
+import '../components/custom_button_before.dart';
+import '../components/CustomTextButton.dart';
+import '../components/custom_text_before.dart';
 import '../components/custom_textfield.dart';
-import '../components/custom_login.dart';
-import '../components/custom_textbutton.dart';
-import '../controllers/login_controller.dart';
-import 'dart:math'; // Import untuk menggunakan min
+
+import 'dart:math';
+
+import 'login_controller.dart'; // Import untuk menggunakan min
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);

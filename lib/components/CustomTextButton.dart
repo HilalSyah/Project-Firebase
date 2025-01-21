@@ -28,18 +28,18 @@ class CustomRichTextButton extends StatelessWidget {
             TextSpan(
               text: firstText,
               style: TextStyle(
-                color: firstTextColor ?? Colors.grey[600],
-                fontSize: fontSize,
-                fontFamily: 'WorkSans'
+                  color: firstTextColor ?? Colors.grey[600],
+                  fontSize: fontSize,
+                  fontFamily: 'WorkSans'
               ),
             ),
             TextSpan(
               text: secondText,
               style: TextStyle(
-                color: secondTextColor ?? Colors.blue,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'WorkSans'
+                  color: secondTextColor ?? Colors.blue,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'WorkSans'
               ),
             ),
           ],

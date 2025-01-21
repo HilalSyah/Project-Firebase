@@ -1,24 +1,24 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:project_firebase/Bin/Login_Binding.dart';
-import 'package:project_firebase/Bin/SignUp_Binding.dart';
-import 'package:project_firebase/Bin/SplashScreen_Binding.dart';
+import 'package:project_firebase/Home/home_screen.dart';
 import 'package:project_firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_firebase/screens/home_screen.dart';
-import 'package:project_firebase/screens/before_login.dart';
-import 'package:project_firebase/screens/profile_screen.dart';
-import 'Bin/before_Binding.dart';
-import 'Bin/home_binding.dart';
-import 'Bin/profile_binding.dart';
-import 'screens/splash_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/signup_screen.dart';
-import 'package:project_firebase/controllers/profile_controller.dart';
 import 'package:project_firebase/Service/firebase_api.dart';
-import 'controllers/cart_controller.dart';
-import 'package:flutter/services.dart';  // Import this for full screen mode
+import 'package:project_firebase/controllers/cart_controller.dart';
+import 'package:flutter/services.dart';
+import 'BeforeLogin/before_Binding.dart';
+import 'BeforeLogin/before_login.dart';
+import 'Home/home_binding.dart';
+import 'Login/Login_Binding.dart';
+import 'Login/login_screen.dart';
+import 'Profile/profile_binding.dart';
+import 'Profile/profile_controller.dart';
+import 'Profile/profile_screen.dart';
+import 'SignUp/SignUp_Binding.dart';
+import 'SignUp/signup_screen.dart';
+import 'Splash/SplashScreen_Binding.dart';
+import 'Splash/splash_screen.dart'; // Import this for full screen mode
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -75,17 +75,15 @@ class MyApp extends StatelessWidget {
             name: '/signup',
             page: () => SignUpScreen(),
             binding: SignUpBinding()),
+        GetPage(name: '/home',
+            page: () => HomeScreen(),
+            binding: HomeBinding()),
         GetPage(
-            name: '/home',
-            page: () => Home(),
-            binding: HomeBinding ()),
-        GetPage(
-            name: '/profile',
-            page:  () =>  ProfileScreen(),
-            binding: ProfileBinding(),
-            transition: Transition.rightToLeft,
-        )
-
+          name: '/profile',
+          page: () => ProfileScreen(),
+          binding: ProfileBinding(),
+          transition: Transition.rightToLeft,
+        ),
       ],
     );
   }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_firebase/SignUp/signup_controller.dart';
 import '../Service/Auth.dart';
 import '../Service/GogleAuth.dart';
-import '../components/before/custom_text.dart';
+import '../components/CustomTextButton.dart';
 import '../components/custom_button.dart';
-import '../components/custom_textfield.dart';
 import '../components/custom_login.dart';
-import '../components/custom_textbutton.dart';
-import '../controllers/signup_controller.dart';
+import '../components/custom_text_before.dart';
+import '../components/custom_textfield.dart';
 import 'dart:math'; // Import untuk menggunakan min
 
 class SignUpScreen extends StatelessWidget {

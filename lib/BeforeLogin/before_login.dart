@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/before/custom_button.dart'; // Import custom button
-import '../components/before/custom_text.dart';
-import '../controllers/before_login_controller.dart';
+import '../components/custom_button_before.dart';
 import '../Service/GogleAuth.dart';
-import 'dart:math'; // Import untuk menggunakan min
+import 'dart:math';
+
+import '../components/custom_text_before.dart';
+import 'before_login_controller.dart'; // Import untuk menggunakan min
 
 class BeforeLogin extends StatelessWidget {
   const BeforeLogin({super.key});

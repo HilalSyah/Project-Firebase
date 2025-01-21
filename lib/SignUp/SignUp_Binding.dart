@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_firebase/controllers/profile_controller.dart';
+import '../Profile/profile_controller.dart';
 
 class SignUpBinding extends Bindings {
   @override

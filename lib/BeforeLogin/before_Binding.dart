@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../controllers/before_login_controller.dart';
+import 'before_login_controller.dart';
 
 class BeforeLoginBinding extends Bindings {
   @override

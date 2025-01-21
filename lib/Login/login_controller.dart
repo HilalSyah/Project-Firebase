@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:project_firebase/Service/firebase_api.dart';
-import 'profile_controller.dart';
+
+import '../Profile/profile_controller.dart';
 
 class LoginController extends GetxController {
   final isLoading = false.obs;

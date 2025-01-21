@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
   final String name;
   final String price;
   final String imageUrl;
   final VoidCallback onAddToCart;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
   const ProductCard({
     Key? key,
@@ -12,6 +15,8 @@ class ProductCard extends StatelessWidget {
     required this.price,
     required this.imageUrl,
     required this.onAddToCart,
+    required this.onEdit,
+    required this.onDelete,
   }) : super(key: key);
 
   @override
@@ -68,18 +73,20 @@ class ProductCard extends StatelessWidget {
                 ],
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.brown,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            const SizedBox(height: 10),
+            // Tambahkan baris tombol edit dan delete
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit, color: Colors.blue),
+                  onPressed: onEdit,
                 ),
-              ),
-              onPressed: onAddToCart,
-              child: const Text(
-                'Add to Cart',
-                style: TextStyle(color: Colors.white),
-              ),
+                IconButton(
+                  icon: const Icon(Icons.delete, color: Colors.red),
+                  onPressed: onDelete,
+                ),
+              ],
             ),
           ],
         ),
