@@ -87,15 +87,24 @@ class AddTaskDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        TextButton(
+        ElevatedButton(
           onPressed: () {
             Get.back(); // Menutup dialog
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red, // Warna tombol merah
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0), // Membuat sudut lebih bulat
+            ),
+            elevation: 8.0, // Menambahkan efek bayangan
+            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24.0), // Menambah padding
+          ),
           child: const Text(
             'Cancel',
-            style: TextStyle(color: Colors.red), // Warna teks biru
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), // Warna teks putih dan tebal
           ),
         ),
+
         ElevatedButton(
           onPressed: () {
             final price = double.tryParse(priceController.text) ?? 0.0;

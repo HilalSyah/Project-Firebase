@@ -24,15 +24,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.blue.shade900, // Warna biru tua
-                Colors.blue,          // Warna biru
-                Colors.lightBlueAccent, // Warna biru muda
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            color: Colors.blue
           ),
         ),
         elevation: 12.0, // Menambahkan efek bayangan
@@ -51,13 +43,10 @@ class ProfileScreen extends StatelessWidget {
             CircleAvatar(
               radius: 60,
               backgroundColor: const Color(0xFF90CAF9), // Warna biru muda
-              child: ClipOval(
-                child: Image.network(
-                  'https://lh3.googleusercontent.com/a/ACg8ocJPlHdLVFmob1OsaReHyUavuO5_KgYEDm3a7WoFcarrCTfRKg=s96-c',
-                  width: 120,
-                  height: 120,
-                  fit: BoxFit.cover,
-                ),
+              child: const Icon(
+                Icons.person, // Ikon yang digunakan
+                size: 60, // Ukuran ikon
+                color: Colors.white, // Warna ikon
               ),
             ),
             const SizedBox(height: 20),

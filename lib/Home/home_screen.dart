@@ -25,15 +25,7 @@ class HomeScreen extends StatelessWidget {
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.blue.shade900, // Warna biru tua
-                Colors.blue,          // Warna biru
-                Colors.lightBlueAccent, // Warna biru muda
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            color: Colors.blue
           ),
         ),
         elevation: 10.0, // Menambahkan efek bayangan
@@ -62,6 +54,19 @@ class HomeScreen extends StatelessWidget {
             }
 
             final tasks = snapshot.data!.docs;
+
+            if (tasks.isEmpty) {
+              return const Center(
+                child: Text(
+                  'Tidak ada data',
+                  style: TextStyle(
+                    fontSize: 18.0, // Ukuran teks
+                    fontWeight: FontWeight.bold, // Teks tebal
+                    color: Colors.blueGrey, // Warna teks
+                  ),
+                ),
+              );
+            }
 
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -113,17 +118,28 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                           content: const Text(
-                            'Apakah Anda yakin ingin menghapus tugas ini?',
+                            'Apakah Anda yakin ingin menghapus data ini?',
                             style: TextStyle(color: Colors.black87),
                           ),
                           actions: [
-                            TextButton(
+                            ElevatedButton(
                               onPressed: () {
                                 Navigator.of(context).pop(); // Menutup dialog
                               },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue, // Warna tombol biru
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0), // Sudut lebih bulat
+                                ),
+                                elevation: 5.0, // Menambahkan efek bayangan
+                                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Menyesuaikan padding
+                              ),
                               child: const Text(
                                 'Batal',
-                                style: TextStyle(color: Colors.blue), // Warna teks biru
+                                style: TextStyle(
+                                  color: Colors.white, // Warna teks putih
+                                  fontWeight: FontWeight.bold, // Membuat teks lebih tebal
+                                ),
                               ),
                             ),
                             ElevatedButton(
@@ -134,15 +150,20 @@ class HomeScreen extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.redAccent, // Warna tombol merah
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(8.0), // Sudut lebih bulat
                                 ),
                                 elevation: 5.0, // Menambahkan efek bayangan
+                                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Menyesuaikan padding
                               ),
                               child: const Text(
                                 'Hapus',
-                                style: TextStyle(color: Colors.white), // Warna teks putih
+                                style: TextStyle(
+                                  color: Colors.white, // Warna teks putih
+                                  fontWeight: FontWeight.bold, // Membuat teks lebih tebal
+                                ),
                               ),
                             ),
+
                           ],
                         );
                       },
