@@ -97,7 +97,7 @@ class AuthService {
         await _googleSignIn.signOut();
       }
 
-      Get.offAllNamed('/splash');
+      Get.offAllNamed('/before');
     } catch (e) {
       print('Error during logout: $e');
       Get.snackbar(
