@@ -35,11 +35,15 @@ class AddTaskDialog extends StatelessWidget {
               controller: titleController,
               decoration: const InputDecoration(
                 labelText: 'Nama Barang',
-                labelStyle: TextStyle(color: Color.fromARGB(255, 1, 20, 35)), // Warna label biru
-                prefixIcon: Icon(Icons.title, color: Color.fromARGB(255, 78, 158, 223)), // Warna ikon biru
+                labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 1, 20, 35)), // Warna label biru
+                prefixIcon: Icon(Icons.title,
+                    color:
+                        Color.fromARGB(255, 78, 158, 223)), // Warna ikon biru
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue), // Warna border fokus biru
+                  borderSide:
+                      BorderSide(color: Colors.blue), // Warna border fokus biru
                 ),
               ),
             ),
@@ -49,7 +53,8 @@ class AddTaskDialog extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Deskripsi',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 2, 24, 43)),
-                prefixIcon: Icon(Icons.description, color: Color.fromARGB(255, 78, 158, 223)),
+                prefixIcon: Icon(Icons.description,
+                    color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
@@ -62,7 +67,8 @@ class AddTaskDialog extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Image URL',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 1, 23, 41)),
-                prefixIcon: Icon(Icons.image, color: Color.fromARGB(255, 78, 158, 223)),
+                prefixIcon:
+                    Icon(Icons.image, color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
@@ -75,7 +81,8 @@ class AddTaskDialog extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Harga',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 0, 7, 13)),
-                prefixIcon: Icon(Icons.attach_money, color: Color.fromARGB(255, 78, 158, 223)),
+                prefixIcon: Icon(Icons.attach_money,
+                    color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
@@ -94,39 +101,47 @@ class AddTaskDialog extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.red, // Warna tombol merah
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Membuat sudut lebih bulat
+              borderRadius:
+                  BorderRadius.circular(12.0), // Membuat sudut lebih bulat
             ),
             elevation: 8.0, // Menambahkan efek bayangan
-            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24.0), // Menambah padding
+            padding: const EdgeInsets.symmetric(
+                vertical: 14.0, horizontal: 24.0), // Menambah padding
           ),
           child: const Text(
             'Cancel',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), // Warna teks putih dan tebal
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold), // Warna teks putih dan tebal
           ),
         ),
-
         ElevatedButton(
           onPressed: () {
-            final price = double.tryParse(priceController.text) ?? 0.0;
+            final price = double.tryParse(priceController.text) ??
+                0.0; // Konversi ke double
             controller.addTask(
               titleController.text,
               descriptionController.text,
               imageUrlController.text,
-              price,
+              price, // Gunakan nilai double
             );
             Get.back(); // Menutup dialog
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue, // Warna tombol biru
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Membuat sudut lebih bulat
+              borderRadius:
+                  BorderRadius.circular(12.0), // Membuat sudut lebih bulat
             ),
             elevation: 8.0, // Menambahkan efek bayangan
-            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24.0), // Menambah padding
+            padding: const EdgeInsets.symmetric(
+                vertical: 14.0, horizontal: 24.0), // Menambah padding
           ),
           child: const Text(
             'Add',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), // Mengubah warna dan gaya teks
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold), // Mengubah warna dan gaya teks
           ),
         ),
       ],

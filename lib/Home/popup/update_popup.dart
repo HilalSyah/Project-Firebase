@@ -8,6 +8,7 @@ class UpdateTaskDialog extends StatelessWidget {
   final String currentTitle;
   final String currentDescription;
   final String currentImageUrl;
+  final double currentPrice;
 
   UpdateTaskDialog({
     Key? key,
@@ -15,6 +16,7 @@ class UpdateTaskDialog extends StatelessWidget {
     required this.currentTitle,
     required this.currentDescription,
     required this.currentImageUrl,
+    required this.currentPrice,
   }) : super(key: key);
 
   final HomeController controller = Get.find();
@@ -29,6 +31,7 @@ class UpdateTaskDialog extends StatelessWidget {
     titleController.text = currentTitle;
     descriptionController.text = currentDescription;
     imageUrlController.text = currentImageUrl;
+    priceController.text = currentPrice.toStringAsFixed(2);
 
     return AlertDialog(
       shape: RoundedRectangleBorder(
@@ -119,6 +122,7 @@ class UpdateTaskDialog extends StatelessWidget {
               titleController.text,
               descriptionController.text,
               imageUrlController.text,
+              double.tryParse(priceController.text) ?? 0.0, // Konversi ke double
             );
             Get.back(); // Menutup dialog
           },

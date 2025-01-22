@@ -55,23 +55,10 @@ class HomeScreen extends StatelessWidget {
 
             final tasks = snapshot.data!.docs;
 
-            if (tasks.isEmpty) {
-              return const Center(
-                child: Text(
-                  'Tidak ada data',
-                  style: TextStyle(
-                    fontSize: 18.0, // Ukuran teks
-                    fontWeight: FontWeight.bold, // Teks tebal
-                    color: Colors.blueGrey, // Warna teks
-                  ),
-                ),
-              );
-            }
-
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Dua kartu per baris
-                childAspectRatio: 0.75, // Rasio aspek untuk menyesuaikan tinggi kartu
+                childAspectRatio: 0.7, // Rasio aspek untuk menyesuaikan tinggi kartu
                 crossAxisSpacing: 8.0, // Spasi antar kolom
                 mainAxisSpacing: 8.0, // Spasi antar baris
               ),
@@ -80,11 +67,20 @@ class HomeScreen extends StatelessWidget {
                 final task = tasks[index];
                 final data = task.data() as Map<String, dynamic>;
 
+                // Log nilai price sebelum konversi
+                print('Price from data: ${data['price']}');
+
+                // Konversi price dari String ke double
+                final price = double.tryParse(data['price'].toString()) ?? 0.0;
+
+                // Log nilai price setelah konversi
+                print('Converted price: $price');
+
                 return CustomCard(
                   imageUrl: data['imageUrl'] ?? '',
                   title: data['title'] ?? 'No Title',
                   description: data['description'] ?? 'No Description',
-                  price: data['price'] ?? 0.0,
+                  price: price, // Gunakan nilai yang sudah dikonversi
                   onupdate: () {
                     Get.dialog(
                       UpdateTaskDialog(
@@ -92,6 +88,7 @@ class HomeScreen extends StatelessWidget {
                         currentTitle: data['title'] ?? '',
                         currentDescription: data['description'] ?? '',
                         currentImageUrl: data['imageUrl'] ?? '',
+                        currentPrice: price,
                       ),
                     );
                   },
@@ -118,28 +115,17 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                           content: const Text(
-                            'Apakah Anda yakin ingin menghapus data ini?',
+                            'Apakah Anda yakin ingin menghapus tugas ini?',
                             style: TextStyle(color: Colors.black87),
                           ),
                           actions: [
-                            ElevatedButton(
+                            TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop(); // Menutup dialog
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue, // Warna tombol biru
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0), // Sudut lebih bulat
-                                ),
-                                elevation: 5.0, // Menambahkan efek bayangan
-                                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Menyesuaikan padding
-                              ),
                               child: const Text(
                                 'Batal',
-                                style: TextStyle(
-                                  color: Colors.white, // Warna teks putih
-                                  fontWeight: FontWeight.bold, // Membuat teks lebih tebal
-                                ),
+                                style: TextStyle(color: Colors.blue), // Warna teks biru
                               ),
                             ),
                             ElevatedButton(
@@ -150,20 +136,15 @@ class HomeScreen extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.redAccent, // Warna tombol merah
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0), // Sudut lebih bulat
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 elevation: 5.0, // Menambahkan efek bayangan
-                                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Menyesuaikan padding
                               ),
                               child: const Text(
                                 'Hapus',
-                                style: TextStyle(
-                                  color: Colors.white, // Warna teks putih
-                                  fontWeight: FontWeight.bold, // Membuat teks lebih tebal
-                                ),
+                                style: TextStyle(color: Colors.white), // Warna teks putih
                               ),
                             ),
-
                           ],
                         );
                       },

@@ -6,7 +6,7 @@ class CartController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // Menambahkan item ke keranjang dan menyimpan data ke Firestore
-  void addToCart(String name, String price, String imageUrl) {
+  void addToCart(String name, double price, String imageUrl) {
     cartItems.add(CartItem(
       name: name,
       price: price,
@@ -28,7 +28,11 @@ class CartController extends GetxController {
     cartItems.remove(cartItem);
 
     // Menghapus item dari Firestore berdasarkan 'name'
-    firestore.collection('cart').where('name', isEqualTo: cartItem.name).get().then((querySnapshot) {
+    firestore
+        .collection('cart')
+        .where('name', isEqualTo: cartItem.name)
+        .get()
+        .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
         firestore.collection('cart').doc(doc.id).delete();
       }
@@ -57,7 +61,7 @@ class CartController extends GetxController {
 // Model untuk item dalam keranjang belanja
 class CartItem {
   final String name;
-  final String price;
+  final double price;
   final String imageUrl;
 
   CartItem({

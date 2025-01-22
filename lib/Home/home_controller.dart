@@ -24,13 +24,15 @@ class HomeController extends GetxController {
 
   // Perbarui data di Firestore
   void updateTask(
-      String id, String title, String description, String imageUrl) {
+      String id, String title, String description, String imageUrl, double price) {
     tasksCollection.doc(id).update({
       'title': title.isEmpty ? 'Untitled' : title,
       'description': description.isEmpty ? 'No description' : description,
       'imageUrl': imageUrl.isEmpty ? '' : imageUrl,
+      'price': price, // Tambahkan price ke dalam data
     });
   }
+
 
   // Hapus data dari Firestore
   void deleteTask(String id) {
