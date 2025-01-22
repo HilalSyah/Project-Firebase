@@ -20,7 +20,7 @@ class AddTaskDialog extends StatelessWidget {
       ),
       backgroundColor: Colors.blue.shade50, // Latar belakang dialog biru muda
       title: const Text(
-        'Add Task',
+        'Tambahkan Barang',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 24.0, // Mengubah ukuran teks
@@ -34,7 +34,7 @@ class AddTaskDialog extends StatelessWidget {
             TextField(
               controller: titleController,
               decoration: const InputDecoration(
-                labelText: 'Title',
+                labelText: 'Nama Barang',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 1, 20, 35)), // Warna label biru
                 prefixIcon: Icon(Icons.title, color: Color.fromARGB(255, 78, 158, 223)), // Warna ikon biru
                 border: OutlineInputBorder(),
@@ -47,7 +47,7 @@ class AddTaskDialog extends StatelessWidget {
             TextField(
               controller: descriptionController,
               decoration: const InputDecoration(
-                labelText: 'Description',
+                labelText: 'Deskripsi',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 2, 24, 43)),
                 prefixIcon: Icon(Icons.description, color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),
@@ -73,7 +73,7 @@ class AddTaskDialog extends StatelessWidget {
             TextField(
               controller: priceController,
               decoration: const InputDecoration(
-                labelText: 'Price',
+                labelText: 'Harga',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 0, 7, 13)),
                 prefixIcon: Icon(Icons.attach_money, color: Color.fromARGB(255, 78, 158, 223)),
                 border: OutlineInputBorder(),

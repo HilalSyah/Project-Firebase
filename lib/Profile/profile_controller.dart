@@ -18,7 +18,7 @@ class ProfileControllerFB extends GetxController {
   try {
     final docRef = FirebaseFirestore.instance
         .collection('users')
-        .doc('6xIwg3ZzfuYHoLGXfdHUiuVVbbn1'); 
+        .doc('I9GR2FBoOiOwC4ELXK3nMa1QYq52');
 
     DocumentSnapshot doc = await docRef.get();
     if (doc.exists) {

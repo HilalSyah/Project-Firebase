@@ -43,10 +43,13 @@ class ProfileScreen extends StatelessWidget {
             CircleAvatar(
               radius: 60,
               backgroundColor: const Color(0xFF90CAF9), // Warna biru muda
-              child: const Icon(
-                Icons.person, // Ikon yang digunakan
-                size: 60, // Ukuran ikon
-                color: Colors.white, // Warna ikon
+              child: ClipOval(
+                child: Image.network(
+                  'https://lh3.googleusercontent.com/a/ACg8ocLylh-sIPWkQSbiczNeX_wCeeq-nz8BT19T2lh2LFhL0pg7qQ=s96-c',
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -65,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                       title: const Text(
                         'Nama Lengkap',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 0, 0, 0), // Warna teks biru
                         ),
@@ -73,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                       subtitle: Obx(() => Text(
                         controller.name.value,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
                         ),
@@ -85,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
                       title: const Text(
                         'Email',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 0, 0, 0), // Warna teks biru
                         ),
@@ -93,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                       subtitle: Obx(() => Text(
                         controller.email.value,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
                         ),
