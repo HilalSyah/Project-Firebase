@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:project_firebase/SignUp/signup_controller.dart';
 import '../Service/Auth.dart';
 import '../Service/GogleAuth.dart';
-import '../components/CustomTextButton.dart';
-import '../components/custom_button.dart';
-import '../components/custom_login.dart';
-import '../components/custom_text_before.dart';
-import '../components/custom_textfield.dart';
+import '../Login/component/CustomTextButton.dart';
+import 'component/custom_button.dart';
+import 'component/custom_signup.dart';
+import '../BeforeLogin/component/custom_text_before.dart';
+import '../Login/component/custom_textfield.dart';
 import 'dart:math'; // Import untuk menggunakan min
 
 class SignUpScreen extends StatelessWidget {

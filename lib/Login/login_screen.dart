@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Service/GogleAuth.dart';
-import '../components/custom_button_before.dart';
-import '../components/CustomTextButton.dart';
-import '../components/custom_text_before.dart';
-import '../components/custom_textfield.dart';
+import '../BeforeLogin/component/custom_button_before.dart';
+import 'component/CustomTextButton.dart';
+import '../BeforeLogin/component/custom_text_before.dart';
+import 'component/custom_textfield.dart';
 
 import 'dart:math';
 

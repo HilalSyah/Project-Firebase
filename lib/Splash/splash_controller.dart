@@ -21,7 +21,7 @@ class SplashController extends GetxController {
 
     if (currentUser != null) {
       // User sudah login, langsung ke home
-      Get.offAllNamed('/home');
+      Get.offAllNamed('/bottomnav');
     } else {
       // User belum login, ke login screen
       Get.offAllNamed('/before');

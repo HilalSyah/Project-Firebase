@@ -5,10 +5,15 @@ import 'package:project_firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_firebase/Service/firebase_api.dart';
-import 'package:project_firebase/controllers/cart_controller.dart';
+
 import 'package:flutter/services.dart';
+import 'Add/AddBinding.dart';
+import 'Add/AddScreen.dart';
 import 'BeforeLogin/before_Binding.dart';
 import 'BeforeLogin/before_login.dart';
+import 'BottomNav/BottomNav.dart';
+import 'BottomNav/BottomNavBinding.dart';
+import 'Home/card/card_controller.dart';
 import 'Home/home_binding.dart';
 import 'Login/Login_Binding.dart';
 import 'Login/login_screen.dart';
@@ -84,6 +89,17 @@ class MyApp extends StatelessWidget {
           binding: ProfileBinding(),
           transition: Transition.rightToLeft,
         ),
+        GetPage(
+          name: '/add',
+          page: () => AddScreen(),
+          binding: AddBinding(), // Bind AddController ke AddScreen
+        ),
+        GetPage(
+          name: '/bottomnav',
+          page: () => BottomNavScreen(),
+          binding: BottomNavBinding(), // Bind AddController ke AddScreen
+        ),
+
       ],
     );
   }

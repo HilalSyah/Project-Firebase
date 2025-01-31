@@ -45,6 +45,7 @@ dependencies:
   awesome_notifications: ^0.10.0
   cloud_firestore: ^5.6.1
   firebase_storage: ^12.4.0
+  persistent_bottom_nav_bar: any
 
 
 

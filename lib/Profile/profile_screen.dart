@@ -24,16 +24,11 @@ class ProfileScreen extends StatelessWidget {
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            color: Colors.blue
+            color: Colors.blue,
           ),
         ),
         elevation: 12.0, // Menambahkan efek bayangan
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Get.back(); // Fungsi ini akan membawa pengguna kembali ke layar sebelumnya
-          },
-        ),
+        // Hapus bagian leading untuk menghilangkan ikon
       ),
       body: Container(
         color: const Color(0xFFE3F2FD), // Latar belakang biru muda
@@ -131,33 +126,32 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-SizedBox(
-  width: double.infinity,
-  height: 50,
-  child: ElevatedButton.icon(
-    onPressed: () => _authService.signOut(),
-    icon: const Icon(
-      Icons.logout,
-      color: Colors.white, // Warna ikon putih
-    ),
-    label: const Text(
-      'Logout',
-      style: TextStyle(
-        fontSize: 18,
-        color: Colors.white, // Warna teks putih
-      ),
-    ),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.redAccent, // Warna tombol merah untuk kontras
-      foregroundColor: Colors.white, // Warna teks dan ikon putih
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      elevation: 5, // Menambahkan efek bayangan
-    ),
-  ),
-)
-
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton.icon(
+                onPressed: () => _authService.signOut(),
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white, // Warna ikon putih
+                ),
+                label: const Text(
+                  'Logout',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white, // Warna teks putih
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent, // Warna tombol merah untuk kontras
+                  foregroundColor: Colors.white, // Warna teks dan ikon putih
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 5, // Menambahkan efek bayangan
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -101,18 +101,76 @@ class CustomCard extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: onDelete,
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          backgroundColor: Colors.blue.shade50,
+                          title: Row(
+                            children: const [
+                              Icon(Icons.warning, color: Colors.redAccent),
+                              SizedBox(width: 8),
+                              Text(
+                                'Konfirmasi Hapus',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ],
+                          ),
+                          content: const Text(
+                            'Apakah Anda yakin ingin menghapus tugas ini?',
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                'Batal',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                onDelete();
+                                Navigator.of(context).pop();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.redAccent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                elevation: 5.0,
+                              ),
+                              child: const Text(
+                                'Hapus',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent, // Warna tombol merah untuk kontras
+                    backgroundColor: Colors.redAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0), // Padding lebih kecil
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 8.0),
                   ),
-                  icon: const Icon(Icons.delete, size: 10, color: Colors.white), // Ukuran ikon lebih kecil
+                  icon: const Icon(Icons.delete, size: 10, color: Colors.white),
                   label: const Text(
                     'Delete',
-                    style: TextStyle(color: Colors.white, fontSize: 10), // Ukuran font lebih kecil
+                    style: TextStyle(color: Colors.white, fontSize: 10),
                   ),
                 ),
               ],

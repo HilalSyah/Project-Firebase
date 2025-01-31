@@ -7,21 +7,6 @@ class HomeController extends GetxController {
   // Stream untuk mendapatkan data dari Firestore
   Stream<QuerySnapshot> get tasksStream => tasksCollection.snapshots();
 
-  // Tambah data ke Firestore
-  void addTask(
-      String title, String description, String imageUrl, double price) {
-    tasksCollection.add({
-      'title': title.isEmpty ? 'Untitled' : title,
-      'description': description.isEmpty ? 'No description' : description,
-      'imageUrl': imageUrl.isEmpty ? '' : imageUrl,
-      'price': price,
-    }).then((value) {
-      print("Task Added: ${value.id}");
-    }).catchError((error) {
-      print("Failed to add task: $error");
-    });
-  }
-
   // Perbarui data di Firestore
   void updateTask(
       String id, String title, String description, String imageUrl, double price) {

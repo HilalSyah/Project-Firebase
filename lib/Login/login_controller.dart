@@ -52,7 +52,7 @@ class LoginController extends GetxController {
 
         await Future.delayed(const Duration(seconds: 1));
         // Navigasikan ke halaman home
-        Get.offAllNamed('/home');
+        Get.offAllNamed('/bottomnav');
       } else {
         // Data pengguna tidak ditemukan di Firestore
         Fluttertoast.showToast(

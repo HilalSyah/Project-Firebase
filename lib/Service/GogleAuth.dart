@@ -54,7 +54,7 @@ class Gogleauth {
 
         // Navigasi ke HomeScreen setelah login berhasil
         Navigator.of(context).pushNamedAndRemoveUntil(
-          '/home',
+          '/bottomnav',
               (route) => false,
         );
       }
